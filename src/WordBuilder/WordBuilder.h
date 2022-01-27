@@ -6,7 +6,9 @@
 
 #include <QString>
 #include <QAxObject>
-#include "../Database/Database.h"
+#include <QVector>
+#include "../BookObserver/Book/Book.h"
+//#include "../Database/Database.h"
 
 
 class WordBuilder {
@@ -15,7 +17,7 @@ public:
     WordBuilder();
     WordBuilder* createColontitul();
     WordBuilder* createHeader();
-    WordBuilder* createTable(QVector<Spare> spares, quint16 length);
+    WordBuilder* createTable(QVector<Book> books, quint16 length);
     WordBuilder* createFooter();
     void saveDocument();
     ~WordBuilder();

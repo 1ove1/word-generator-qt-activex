@@ -9,11 +9,19 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/BookObserver/Book/Book.cpp \
+    src/BookObserver/BookObserver.cpp \
+    src/XMLParser/XMLParser.cpp \
     src/main.cpp \
-    src/MainWindow.cpp
+    src/MainWindow.cpp \
+    src/WordBuilder/WordBuilder.cpp
 
 HEADERS += \
-    src/MainWindow.h
+    src/BookObserver/Book/Book.h \
+    src/BookObserver/BookObserver.h \
+    src/XMLParser/XMLParser.h \
+    src/MainWindow.h \
+    src/WordBuilder/WordBuilder.h
 
 FORMS += \
     recources/forms/MainWindow.ui
@@ -25,3 +33,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 # QAxObject implement
 QT += axcontainer
+
+STATECHARTS += \
+    condition_diagram.scxml
+

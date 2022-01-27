@@ -1,7 +1,7 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
-recources/xml/db.xml
+recources/xml/book-list.xml
 
 *~
 *.autosave

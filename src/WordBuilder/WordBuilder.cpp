@@ -26,7 +26,7 @@ WordBuilder* WordBuilder::createColontitul()
     this->switchAlignment("right");
 
     // texting
-    this->appendText("Начальнику службы РАВ");
+    this->appendText("Заведующий библиотекой");
 
     return this;
 }
@@ -49,26 +49,26 @@ WordBuilder* WordBuilder::createHeader()
     this->switchAlignment("left");
 
     // texting
-    this->appendText("          Прошу в целях поддержки техники отделения зенитного ракетного вооружения БУК М1-2 в боеготовом состоянии и обеспечения своевременного ремонта узлов и блоков пополнить ЗИП на изделие 9А319М1.");
+    this->appendText("          Прошу в целях пополнения книжного ассортимента произвести закупку следующих книг:");
 
     return this;
 }
 
-WordBuilder* WordBuilder::createTable(QVector<Spare> spares, quint16 length)
+WordBuilder* WordBuilder::createTable(QVector<Book> books, quint16 length)
 {
     quint16 counter = 1;
     this->insertParagraphs(1);
     this->refreshRange();
 
     this->ptable = this->ptable->querySubObject("Add(Range, NumRows, NumColumns, DefaultTableBehavior, AutoFitBehavior)",
-                                                        this->prange->asVariant(), length, TABLE_COUNT_COLUMNS, 1, 2);
+                                                        this->prange->asVariant(), length + 1, TABLE_COUNT_COLUMNS, 1, 2);
     this->activeParagraph += (length * (TABLE_COUNT_COLUMNS + 1));
 
 
-    this->insertDataInTable("№ п/п", "Параметры, входящие в комплект", "Единицы измерения", "Положено держать", "Примечание");
-    for(Spare &elem: spares) {
+    this->insertDataInTable("№ п/п", "Название", "ISBN", "Количество", "Примечание");
+    for(Book &elem: books) {
         if (elem.getCount().toInt() > 0) {
-            this->insertDataInTable(QString::number(counter++), elem.getName(), "шт", elem.getCount(), "");
+            this->insertDataInTable(QString::number(counter++), elem.getName(), elem.getISBN(), elem.getCount(), "");
         }
 
     }
